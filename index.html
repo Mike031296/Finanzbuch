@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finance Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body">
+  <main class="app-shell">
+    <header class="topbar">
+      <div><p class="eyebrow">Willkommen zurück</p><h1>Finance Dashboard</h1></div>
+      <button class="ghost-btn" onclick="logout()">Logout</button>
+    </header>
+    <section class="summary-grid">
+      <article class="summary-card balance-card"><span>Kontostand</span><strong id="balance">0 €</strong></article>
+      <article class="summary-card"><span>Einnahmen</span><strong id="income" class="income-text">0 €</strong></article>
+      <article class="summary-card"><span>Ausgaben</span><strong id="expense" class="expense-text">0 €</strong></article>
+    </section>
+    <section class="dashboard-grid">
+      <article class="panel chart-panel wide"><div class="panel-head"><div><h2>Kontoverlauf</h2><p>Entwicklung deiner Finanzen</p></div></div><canvas id="trendChart"></canvas></article>
+      <article class="panel chart-panel"><div class="panel-head"><div><h2>Kategorien</h2><p>Ausgaben nach Bereich</p></div></div><canvas id="categoryChart"></canvas></article>
+      <article class="panel chart-panel"><div class="panel-head"><div><h2>Einnahmen vs. Ausgaben</h2><p>Direkter Vergleich</p></div></div><canvas id="barChart"></canvas></article>
+    </section>
+    <section class="content-grid">
+      <article class="panel"><h2>Neue Transaktion</h2><div class="form-grid"><input id="name" placeholder="Name, z. B. Lidl" /><input id="amount" type="number" placeholder="Betrag, z. B. -45 oder 2000" /><select id="category"><option value="Unterhaltung">🎮 Unterhaltung</option><option value="Versicherung">🛡️ Versicherung</option><option value="Nebenkosten">🏠 Nebenkosten</option><option value="Lebensmittel">🛒 Lebensmittel</option></select><button onclick="addTransaction()">Hinzufügen</button></div></article>
+      <article class="panel"><div class="panel-head"><div><h2>Letzte Transaktionen</h2><p>Aktuelle Buchungen</p></div></div><div id="list" class="transaction-list"></div></article>
+    </section>
+  </main>
+  <div id="timeout-warning" class="timeout-modal hidden"><div class="timeout-box"><h3>⚠️ Sitzung läuft ab</h3><p>Du wirst in Kürze automatisch ausgeloggt.</p><button onclick="extendSession()">Session verlängern</button></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
